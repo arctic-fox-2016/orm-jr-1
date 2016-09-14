@@ -18,7 +18,7 @@ class Students {
     })
   }
 
-  update(db, id, firstname, lastname, cohort_id){
+  static.update(db, id, firstname, lastname, cohort_id){
     db.run("UPDATE students SET firstname = $firstname, lastname = $lastname, cohort_id = $cohort_id WHERE id = $id", {$firstname: firstname, $lastname: lastname, $cohort_id: cohort_id, $id: id}, function(err){
       if(err){
         console.log(err)
