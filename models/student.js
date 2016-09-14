@@ -2,7 +2,6 @@
 
 class Student {
   constructor(firstname, lastname, cohort_id ){
-    this.id = null,
     this.firstname = firstname,
     this.lastname = lastname,
     this.cohort_id = cohort_id
@@ -28,7 +27,7 @@ class Student {
   }
 
   static delete(connection, id){
-    connection.run('delete from students where id = $id' , {$id: id}, function(err) {
+    connection.run(`delete from students where id = ${id}`, function(err) {
       if (err) {
         console.log(err)
       } else {
@@ -38,8 +37,8 @@ class Student {
   }
 
   // update from table student. Data is class Student
-  static update(connection, data){
-    connection.run('update students set firstname = $firstname, lastname = $lastname, cohort_id = $cohort_id, where id = $data.id', {$firstname: data.firstname, $lastname: data.lastname, $cohort_id: data.cohort_id}, function(err) {
+  static update(connection, id, data){
+    connection.run('update students set firstname = $firstname, lastname = $lastname, cohort_id = $cohort_id where id = $d', {$firstname: data.firstname, $lastname: data.lastname, $cohort_id: data.cohort_id, $d:id}, function(err) {
       if (err) {
         console.log(err)
       } else {
@@ -47,6 +46,19 @@ class Student {
       }
     })
   }
+
+  // view all students with cohort name
+  static viewAll(connection){
+    connection.all('select a.id, a.firstname, a.lastname, b.name from students a join cohorts b on a.cohort_id = b.id', function(err, result) {
+        if (err){
+          console.log(err)
+        } else {
+          console.log(result);
+        }
+    })
+  }
+
+
 }
 
 export default Student

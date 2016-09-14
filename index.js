@@ -8,26 +8,23 @@ const repl = require('repl')
 const sqlite = require('sqlite3').verbose()
 
 
-// function startRepl(){
-//   let replServer = repl.start({
-//     prompt: "hello > "
-//     })
-//   replServer.context.db = dbModel;
-//   replServer.context.createStudent = Student.create
-// }
-//
-// if (process.argv.length > 2) {
-//   if (process.argv[2] == "playtime") {
-//     startRepl()
-//   }
-// }
+
+
 
 let dbModel = new DBModel("./db/student.db", sqlite)
-//DBModel.init(dbModel.connection)
-//Student.list(dbModel.connection)
-// Student.create(dbModel.connection, new Student('Lilianti', 'Wibiesono', 1))
-// Student.create(dbModel.connection, new Student('Tevin', 'Imut', 2))
-// Student.create(dbModel.connection, new Student('Ariana', 'Grande', 1))
-//
-// Cohort.create(dbModel.connection, new Cohort('Alpha'))
-// Cohort.create(dbModel.connection, new Cohort('Beta'))
+// Student.list(dbModel.connection)
+// Cohort.list(dbModel.connection)
+// Cohort.update(dbModel.connection, 6, new Cohort('Zerro'))
+// Cohort.list(dbModel.connection)
+
+if (process.argv.length > 2) {
+  if (process.argv[2] == "playtime") {
+    let replServer = repl.start({
+      prompt: "hello > "
+      })
+
+    replServer.context.dbModel = dbModel
+    replServer.context.Student = Student
+    replServer.context.Cohort = Cohort
+  }
+}

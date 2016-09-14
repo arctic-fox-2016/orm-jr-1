@@ -26,6 +26,26 @@ class Cohort {
     })
   }
 
+static delete(connection, id){
+  connection.run(`delete from cohorts where id = ${id}`, function(err) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('Data Deleted')
+    }
+  })
+}
+
+static update(connection, id, data){
+  connection.run('update cohorts set name = $a where id = $b', {$a: data.name, $b:id}, function(err) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('Data updated');
+    }
+  })
+}
+
 }
 
 export default Cohort
