@@ -18,25 +18,5 @@ let dbModel = new DBModel(connection,sqlInit,sqlite,file)
 Cohort.create(dbModel.connection, new Cohort("Math"));
 Student.create(dbModel.connection, new Student("Ari","Adiprana",1));
 Student.create(dbModel.connection, new Student("Ivan","Gerard",1));
-
-Student.all(dbModel.connection, function(data,err){
-  if(!err){
-    for(let i=0; i<data.length; i++){
-      console.log(data[i]);
-    }
-  }
-  else{
-    console.log(`Error`);
-  }
-})
-
-Cohort.where(dbModel.connection, 'COHORT_ID=1',function(data,err){
-  if(!err){
-    for(let i=0; i<data.length; i++){
-      console.log(data[i]);
-    }
-  }
-  else{
-    console.log(`Error`);
-  }
-});
+Student.all(dbModel.connection)
+Cohort.where(dbModel.connection, 'COHORT_ID=1')
