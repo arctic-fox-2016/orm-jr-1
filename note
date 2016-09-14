@@ -1,0 +1,22 @@
+
+class Students
+  -this this
+  -create table
+  -insert
+  -update
+  -delete
+
+class Cohorts
+  -create table
+  -insert
+  -update
+  -delete
+
+class Database
+  -file name --> utk create database
+
+
+
+database student.db
+table students
+table cohort
